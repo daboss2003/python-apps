@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="bg-black text-light">
+        <div class="d-flex justify-content-center">
+        <h1>TECH-BOSS.CO</h1>
+      </div>
+      {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+      </nav>
+          <main>
+            <div class="container-fluid mt-3">
+              <h1 class="text-center text-primary">
+                Login
+              </h1>
+            </div>
+            <div class="container-fluid d-flex justify-center flex-column align-items-center mt-5">
+              <div class=" mt-5
+              me-3 ms-3 blue text-primary text-center spread">
+                
+                <form action="/login" method="post" id="myform">
+                   
+    
+
+                  <div class="m-5 mb-2">
+                    <label for="username" class="form-label ">Username</label>
+                    <input type="text" class="form-control text-center" placeholder="john havard" id="username" name="username" required>
+                </div>
+    
+                    
+    
+
+
+                <div class=" m-5 mt-2">
+                    <label for="password" class="form-label ">Password</label>
+                    <input type="password" id="password" name="password" class="form-control text-center" required>
+                </div>
+    
+    
+                  
+                    
+                    
+                  
+                    
+    
+    
+    
+
+    
+                 <div class="m-3 d-flex justify-content-around">
+                  <button type="submit" class="btn btn-outline-info" id="submit">Submit</button>
+                  <button type="reset" class="btn btn-outline-info ">Reset</button>
+                 </div>
+                  
+                </form>
+                <p class="text-center">if you dont have an account with us click <a href="/registration" class="text-danger">here</a> to register</p>
+          </div>
+          </div>
+        </main>
+    
+    
+    
+        <div class=" bg-dark text-light down">
+        <footer>
+          TECH-BOSS.CO
+        </footer>
+      </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <style>
+        body,.blue{
+          background-color:#13213c;
+          color:#c5c5ba;
+        }
+        .down{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .spread{
+            width: 500px;
+            height: 400px;
+        }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+{% block title %}
+  WishList
+{% endblock %}
+
+
+{% block body %}
+<h1 class="text-center mb-5">My wishlist</h1>
+
+{% for item in items %}
+  <p class="text-center mt-3">
+    <a href="{% url 'listing_page' listing_id=item.id %}">{{item.title}} --- ${{item.current_bid}}</a>
+  </p>
+  {% empty %}
+  No items on your wish list!
+{% endfor %}
+{% endblock %} 

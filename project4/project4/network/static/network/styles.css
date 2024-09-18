@@ -1,0 +1,28 @@
+.create_post_container button{
+    position: absolute;
+    transition: ease-in-out;
+    transform: translate(-130px, 250px);
+    
+}
+    
+.create_post_container strong{
+    transform: translate(20px, 80px);
+    color: whitesmoke;
+}
+
+#col{
+    background-color: rgb(235, 238, 240);
+    border-radius: 20px;
+}
+
+.buttons_control{
+    background-color: aliceblue;
+    
+}
+.max{
+    max-width: 1000px;
+   
+}
+.buttons_control button.like{
+    color : blue;
+}

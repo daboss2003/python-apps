@@ -1,0 +1,28 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Creat a New Entry
+{% endblock %}
+
+{% block body %}
+<h3>Create a New entry</h3>
+<p>plese be informed that the content should be created in a .md syntax</p>
+<form action="{% url 'create_new' %}" method="post" id="create">
+    {% csrf_token %}
+    <label for="title">Title:</label>
+    <input type="text" name="title"  id="title">
+    <textarea name="content" id="content" placeholder="### css is greate"></textarea>
+    <button type="submit">Upload</button>
+</form>
+<script>
+    const create = document.getElementById('create');
+    create.addEventListener('submit',function(){
+        let title = document.getElementById('title').value;
+        let content = document.getElementById('content').value;
+        if (title == "" || content == ""){
+            event.preventDefault()
+            alert('please correctly fill in all requirements')
+        }
+    })
+</script>
+{% endblock %}

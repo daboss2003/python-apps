@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Edit Entry
+{% endblock %}
+
+{% block body %}
+<h3>Edit {{ title }}</h3>
+<form action="{% url 'edit_page' name=title %}" method="post" id="create">
+    {% csrf_token %}
+    <input type="hidden" name="title"  id="title" value="{{ title }}">
+    <textarea name="content" id="content" >{{ entries }}</textarea>
+    <button type="submit">Upload</button>
+</form>
+<script>
+    const create = document.getElementById('create');
+    create.addEventListener('submit',function(){
+        let title = document.getElementById('title').value;
+        let content = document.getElementById('content').value;
+        if (title == "" || content == ""){
+            event.preventDefault()
+            alert('please correctly fill in all requirements')
+        }
+    })
+</script>
+{% endblock %}

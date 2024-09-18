@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register For An Account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="bg-black text-light">
+        <div class="d-flex justify-content-center">
+        <h1>TECH-BOSS.CO</h1>
+      </div>
+      </nav>
+          <main>
+            <div class="container-fluid mt-3">
+              <h1 class="text-center text-primary">
+                Create an Account
+              </h1>
+
+            </div>
+            <div class="container-fluid">
+              <div class="d-flex justify-content-center mt-5
+              me-3 ms-3   text-light">
+                
+                <form action="/registration" method="post" id="myform">
+                   
+    
+                  <div class="text-center m-3 rounded-3">
+                    <label for="email" class="form-label ">Email</label>
+                    <input type="email" id="email" minlength="5" name="email" placeholder="eg.@email.com" class="form-control text-center" required>
+                    <p class="text-center" id="fp"></p>
+                  </div>
+
+
+                  <div class="m-3 rounded text-center">
+                    <label for="username" class="form-label ">Username</label>
+                    <input type="text"  class="form-control text-center" placeholder="john havard" id="username" name="username" required>
+                    <p id="pp" class="text-center"></p>
+                  </div>
+    
+                    
+    
+
+
+                   <div class="m-3 rounded text-center">
+                    <label for="password" class="form-label ">Password</label>
+                    <input type="password" id="password" name="password"  class="form-control text-center" required>
+                  </div>
+    
+
+
+                  <div class="m-3 rounded text-center">
+                    <label for="confirm" class="form-label ">Confirm your Password</label>
+                    <input type="password" id="confirmm" name="confirm"  class="form-control text-center" required>
+                  </div>
+    
+    
+                  
+                    
+                    
+                  
+                    
+    
+    
+    
+                    <div class="m-3 rounded text-center">
+                      <label for="role" class="form-label">Register As</label>
+                      <select name="role" id="role" class="form-select">
+                        <option value="client">Client</option>
+                        <option value="professional">Professional</option>
+                      </select>
+                    </div>
+    
+                      
+    
+                 <div class="m-3 d-flex justify-content-around">
+                  <button type="submit" class="btn btn-outline-info" id="submit">Submit</button>
+                  <button type="reset" class="btn btn-outline-info ">Reset</button>
+                 </div>
+                  
+                </form>
+          </div>
+          </div>
+        </main>
+    
+    
+    
+        <div class=" bg-dark text-light down">
+        <footer>
+          TECH-BOSS.CO
+        </footer>
+      </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <style>
+        .down{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+    </style>
+    <script>
+      myform = document.getElementById("myform");
+      submit = document.getElementById('submit');
+      reguser = /^[a-zA-Z0-9_]+$/;
+      regemail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      fp = document.getElementById('fp');
+      pp = document.getElementById('pp');
+      
+    
+
+
+      myform.addEventListener('submit',function(){
+        email = document.getElementById('email').value;
+      username = document.getElementById('username').value;
+      confirmm = document.getElementById('confirmm').value;
+      password = document.getElementById('password').value;
+       
+
+         
+
+         if(reguser.test(username) == false) {
+          
+          alert("plese fill the forms correctly");
+          pp.innerHTML = "make sure to replace any space  with the underscore character";
+          pp.style.color = "red";
+          event.preventDefault();
+        }
+
+        else if (regemail.test(email) == false){
+          alert("plese fill the forms correctly");
+          fp.innerHTML = "Enter a valid email";
+          fp.style.color = "red";
+          event.preventDefault();
+        }
+
+        else if (confirmm != password){
+          alert("passwords do not match")
+          event.preventDefault();
+        }
+         
+          
+          
+        
+        else{
+          alert("registretion successful")
+        }
+        
+      })
+
+
+
+
+      
+     
+
+
+      
+
+      
+
+
+    </script>
+    <style>
+        body{
+          background-color:#13213c;
+          color:#c5c5ba;
+        }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,416 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+
+ a{
+    color: blue;
+    text-decoration: none;
+    font-size: 20px;
+    position: absolute;
+    left: 30%;
+    transition: color 1s;
+}
+
+a:hover{
+    color: whitesmoke;
+    transform: translateY(-10%);
+}
+.container, .second__container{
+    max-width: 700px;
+     background: url(first.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+@media screen and (max-width:500px){
+    body{
+        width: 100vw;
+        height: 100vh;
+        display: block;
+    }
+    .container, .second__container{
+        max-width: 400px;
+        width: 100%;
+        height: 100vh;
+        
+    }
+    .ad{
+        left: 40%;
+    }
+    a{
+        font-size: 20px;
+        
+    }
+
+    .add{
+        left: 20%;
+    }
+
+     .container .disk__container .disk{
+        width: 250px;
+        height: 250px;
+    }
+
+    .container .disk__container .disk .inner__circle{
+        width: 70px;
+        height: 70px;
+    }
+
+    .container .disk__container .disk .inner__circle .circle{
+        width: 40px;
+        height: 40px;
+    }
+    .container .disk__container{
+        left: 15%;
+        top: 12%;
+    }
+
+    .music__list, .music__upload{
+        height: 50%;
+        width: 50%;
+        top:10%;
+    }
+
+    .second__container ul{
+        margin: 5px;
+        padding: 5px;
+        font-size: 10px;
+    }
+    .second__container li{
+        margin: auto;
+        padding: auto;
+    }
+
+    .music__player p{
+        font-size: 15px;
+    }
+
+    .container .music__player .line__div .small__circle{
+        animation: littleForward 6s linear 1 ;
+    }
+
+    .container .music__player .controls{
+        font-size: 20px;
+    }
+
+    @keyframes littleForward {
+        from{
+            transform: translateX(0px);
+        }
+    
+        
+        to{
+            transform:  translateX(310px) ;
+        }
+    }
+
+
+    .color .music__upload .logo{
+        font-size: 30px;
+    }
+
+    .color .music__upload .form{
+        margin: 20px 30px;
+        height: 60%;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+}
+
+.container{
+    display: none;
+}
+
+.disk__container{
+  position: absolute;
+  top: 10%;
+  left: 15%; 
+}
+
+.disk{
+    width: 400px;
+    height: 400px;
+    background: url(pic.jfif);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 15px 10px 12px black;
+    animation: rotate 6s linear 0.1s 1;
+    
+
+}
+
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.disk .inner__circle{
+    width: 120px;
+    height: 120px;
+    background-color: rgb(175, 169, 169);
+    position: absolute;
+    bottom: 35%;
+    left: 35%;
+    border-radius: 50%;
+}
+
+.disk .circle{
+    width: 60px;
+    height: 60px;
+    background-color: rgb(29, 29, 29);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 25%;
+    left: 22%;
+    z-index: 2;
+}
+
+.music__player{
+    color: whitesmoke;
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    bottom: -20%;
+    text-align: center;
+
+}
+
+.line__div{
+    background-color: rgb(61, 56, 56);
+    width: 80%;
+    height: 10%;
+    transform: translateX(55px);
+}
+
+.line__div .line{
+    width: 100%;
+    height: 5px;
+    background-color: aliceblue;
+    transform: translateY(20px);
+    animation: move 6s ease-in-out .1s 1 ;
+    position: relative;
+}
+@keyframes move {
+    from{
+        background-color: whitesmoke;
+    }
+    to{
+        background-color: blue;
+    }
+}
+
+.line__div .small__circle{
+    width: 15px;
+    height: 15px;
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 40%;
+    animation: forward 6s linear 1 ;
+}
+
+@keyframes forward {
+    from{
+        transform: translateX(0px);
+    }
+
+    
+    to{
+        transform:  translateX(550px) ;
+    }
+}
+.controls{
+    display: flex;
+    justify-content: space-around;
+    transform: translateY(30px);
+    color: blue;
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.music__name{
+    text-align: center;
+    font-size: 22px;
+    animation: go 20s linear 0.5s infinite backwards;
+}
+
+@keyframes go{
+    from{
+        transform: translateX(-600px);
+    }
+
+    to{
+        transform:  translateX(700px) ;
+    }
+
+}
+
+.second__container .music__list, .music__upload{
+    height: 600px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    width: 80%;
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    border-radius: 20px;
+    overflow: scroll;
+    box-shadow: 3px 2px 5px 2px black;
+}
+
+.music__upload{
+    overflow:visible;
+    transition: all 1s;
+   
+}
+
+
+.color{
+    background: whitesmoke;
+    display: block;
+}
+
+.music__upload:hover{
+    transform: translateY(-20px);
+    background-color: rgb(230, 230, 250);
+}
+
+.second__container ul{
+   padding: 20px 5px;
+   margin: 20px 10px;
+   color: white;
+   background-color:transparent;
+   list-style-type: none;
+   scroll-behavior: smooth;
+   transition: scroll 2s;
+   text-align: center;
+   font-size: 30px;
+}
+
+.second__container li{
+    padding: 15px ;
+    margin: 3px;
+    background-color: blue;
+}
+
+.add{
+    left: 60%;
+}
+
+.add2{
+    left: 50%;
+}
+
+.form{
+    margin: 40px 40px;
+    background-color: rgb(230, 230, 250);
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    display: grid;
+    place-content: center;
+    box-shadow: 3px 2px 5px 2px black ;
+    transition: all 1s;
+}
+
+.form input{
+    border: none;
+    margin: 30px;
+    display: block;
+    background-color: whitesmoke;
+    padding: 50px 40px;
+    border-radius: 10px;
+    box-shadow: 3px 2px 5px 2px black ;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 1s;
+    
+}
+
+.form button{
+    box-shadow: 3px 2px 5px 2px black ;
+    border: none;
+    padding: 20px 20px;
+    margin: 10px 80px;
+    background-color: blue;
+    border: 3px solid blue;
+    border-radius: 20px;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 22px;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+.form button:hover{
+    background-color: transparent;
+    color: blue;
+    transform: translateY(-10px);
+
+}
+
+.form input:hover{
+    transform: translateY(-10px);
+    background-color: rgb(230, 230, 250);
+}
+
+.form:hover{
+    transform: translateY(-15px);
+    background-color: whitesmoke;
+}
+
+.logo{
+    text-align: center;
+    font-size: 40px;
+    letter-spacing: -3px;
+    font-weight: bolder;
+    transform: translateY(-25px);
+    z-index: 2;
+
+}
+
+
+.red{
+    color: red;
+
+}
+
+.blue{
+    color: blue;
+}
+
+.green{
+    color: green;
+}
+
+.orange{
+    color: orange;
+}
+
+
+label{
+    text-align: center;
+    font-size: 30px;
+}

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Music Player</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="{% static 'index.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container" id="container" >
+        <a href="#" id="container__link" class="ad">Playlist</a>
+    <div class="disk__container">
+        <div class="disk" id="disk">
+            <div class="inner__circle">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+    <div class="music__player" id="music">
+        <p class="music__name" id="music__name">No Music selected</p>
+        <div class="line__div" id="line__div">
+        <div class="line" id="line"></div>
+        <div class="small__circle" id="small__circle"></div>
+        </div>
+        <div class="controls">
+            
+            <span class="prev__btn" id="prev__btn"><i class="fa-solid fa-backward"></i></span>
+            <span class="play__state" id="play__state"><i class="fa-solid fa-play"></i></span>
+            <span class="next__btn" id="next__btn"><i class="fa-solid fa-forward"></i></span>
+        </div>
+        <audio src="">
+            Your Browser does not support Audio
+        </audio>
+    </div>
+
+
+</div>
+
+<div class="second__container" id="second__container">
+    <a href="#" id="second__container__link">Listen</a>
+    <a href="{% url 'upload' %}" class="add">Add Song</a>
+    <div class="music__list">
+        <ul>
+            {% for file in audio_list %}
+            <li class="music__title"> {{ file }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>

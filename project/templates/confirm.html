@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set up your profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+
+  <nav class="bg-black text-light">
+    <div class="d-flex justify-content-center">
+    <h1>TECH-BOSS.CO</h1>
+  </div>
+  {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+  </nav>
+      <main>
+        <div class="container-fluid mt-3">
+          <h1 class="text-center text-primary">
+            Set Up Your Profile!
+          </h1>
+        </div>
+        <div class="container-fluid">
+          <div class="d-flex justify-content-center m-5">
+            
+            <form action="/confirm" method="post" id="myform">
+              <div class="text-center m-3 rounded-3">
+                <label for="fullname" class="form-label ">Your full name</label>
+                <input type="text" id="fullname" minlength="5" name="fullname" placeholder="Full Name" class="form-control text-center" required>
+                <p class="text-center" id="fp"></p>
+              </div>
+                
+
+              <div class="m-3 rounded-4 text-center">
+                <label for="status" class="form-label ">What's your current Work status </label>
+                <select name="Status" id="Status" class="form-select text-center">
+                  <option value="Employed">Employed</option>
+                  <option value="Unemployed">Unemployed</option>
+                </select>
+              </div>
+
+              <div class="m-3 rounded-4 text-center">
+                <label for="description"  class="form-label ">Describe your Personality  (Up to 200 words)</label>
+                <textarea id="description" minlength="100" name="description" required  class="form-control"></textarea>
+                <p class="text-center" id="dp"></p>
+              </div>
+
+               <div class="m-3 rounded text-center">
+                <label for="job" class="form-label ">state the service that you offer</label>
+                <input type="text" id="job" name="job" class="form-control text-center" placeholder="Job category" required>
+                <p class="text-cenetr" id="jp"></p>
+              </div>
+
+
+              <div class="m-3 rounded text-center" id="exdiv">
+                <label for="count" class="form-label ">How many year of Experience do you have</label>
+                <input type="number" name="experience_count" id="excount"  required placeholder="Experience" class="form-control text-center" max="20" min="1">
+                <button type="button" id="excheck" class="btn btn-outline-info">check</button>
+                <p class="text-center" id="exp"></p>
+                
+              </div>
+                
+                
+              <div class="m-3 rounded text-center">
+                <label for="count" class="form-label ">Current location</label>
+                <input type="text"  class="form-control text-center" placeholder="Address" id="address" name="address" required>
+              </div>
+
+                
+
+
+
+                <div class="m-3 rounded text-center">
+                  <label for="count" class="form-label  d-block">How available are you</label>
+                  <select name="availability" id="available" class="form-select text-center">
+                    <option value="part-time">Part-time</option>
+                    <option value="full-time">full-time</option>
+                  </select>
+                  </div>
+
+
+                  <div class="m-3 rounded text-center">
+                    <label for="count" class="form-label  d-block">How do you prefare to work</label>
+                    <select name="work_pattern" id="work-pattern" class="form-select text-center">
+                      <option value="office">Office</option>
+                      <option value="home">Home</option>
+                    </select>
+                 </div>
+
+
+
+                <div class="m-3 rounded-4 text-center">
+                  <label for="review" class="form-label ">Leave a review of your previous wins</label>
+                <textarea name="review" id="review" minlength="50" required class="form-control"></textarea>
+                </div>
+
+
+                <div class="m-3 rounded-4 text-center" id="eddiv">
+                <label for="education" class="form-label">How many educational background do you have</label>
+                <input type="number" id="edcount" name="education_count" max="20" min="1" required class="form-control">
+                <button type="button" id="edcheck" class="btn btn-outline-primary">check</button>
+                <p class="text-center" id="edp"></p>
+              </div>
+
+
+              <div class="m-3 rounded-4 text-center" id="cdiv">
+                <label for="certifications" class="form-label">Certifications</label>
+                <input type="number" class="form-control" name="certificate_count" id="ccount" max="20" min="1" required>
+                <button type="button" id="ccheck" class="btn btn-outline-primary">check</button>
+                <p class="text-center" id="cp"></p>
+              </div>
+
+
+
+              
+              <div class="m-3 rounded-4 text-center" id="sdiv">
+                <label for="special-skills" class="form-label">How many skills do you have to offer</label>
+
+                <input type="number" class="form-control" name="skill_count" id="scount" max="20" min="1" required>
+                <button type="button" id="scheck" class="btn btn-outline-primary">check</button>
+                <p class="text-center" id="sp"></p>
+
+              </div>
+
+
+
+
+              <div class="m-3 rounded-4 text-center">
+                <label for="special-skills" class="form-label">Enter the link to Your Personal Portfolio website for Client to contact you</label>
+
+                <input type="text" class="form-control" name="user_link" id="user_link" required>
+                <p class="text-center" id="lp"></p>
+
+              </div>
+
+             <div class="m-3 d-flex justify-content-around">
+              <button type="submit" class="btn btn-outline-primary" id="submit">Submit</button>
+              <button type="reset" class="btn btn-outline-primary ">Reset</button>
+             </div>
+              
+            </form>
+      </div>
+      </div>
+    </main>
+
+
+
+    <div class="text-center bg-dark text-light">
+    <footer>
+      TECH-BOSS.CO
+    </footer>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+    <script>
+      window.onload = function(){
+      const  myform = document.getElementById('myform');
+        regexf = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+        regs = /^[^=\[\];:*"'$#(){}]+$/;
+        regexl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+  
+  
+      
+       const excheck = document.getElementById('excheck')
+        excheck.addEventListener('click',function(){
+          const  excount = document.getElementById('excount').value
+         
+          const exp = document.getElementById('exp')
+            
+          if (!isNaN(excount) && excount > 0){
+            console.log(excount);
+            let exdiv = document.getElementById('exdiv')
+            for(let i = 0; i < excount; i++){
+              let secondlabel = document.createElement("label");
+              secondlabel.setAttribute("class","text-center text-primary");
+              secondlabel.innerHTML = "Date of experience"+i
+              exdiv.appendChild(secondlabel)
+              let secondinput = document.createElement("INPUT");
+              secondinput.setAttribute ('type','text');
+              secondinput.setAttribute ('name','experiencedate_'+i);
+              secondinput.setAttribute ('placeholder','eg from 1975 till 3000');
+              secondinput.setAttribute("class",'mb-4 form-control text-center');
+              secondinput.setAttribute("id","experiencedate"+i)
+              secondinput.required=true;
+              exdiv.appendChild(secondinput);
+              
+
+              let newlabel = document.createElement("label");
+              newlabel.setAttribute("class","text-center text-primary");
+              newlabel.innerHTML = "State the Experience"+i
+              exdiv.appendChild(newlabel)
+              let newinput = document.createElement("INPUT")
+              newinput.setAttribute("type", "text");
+              newinput.setAttribute("name","experience_"+i);
+              newinput.setAttribute("class","form-control mb-4 text-center");
+              newinput.setAttribute("placeholder","Experience"+i);
+              newinput.setAttribute("id","experience"+i)
+              newinput.required=true;
+              exdiv.appendChild(newinput);
+              
+  
+            }
+            excheck.remove();
+          }
+          
+          else{
+            exp.innerHTML = "Enter the amount of job experience you have in number so we could help you collect it "
+            exp.style.color = 'blue'
+          
+            
+          }
+        })
+
+
+        const edcheck = document.getElementById('edcheck')
+        edcheck.addEventListener('click',function(){
+          const  edcount = document.getElementById('edcount').value
+         
+          const edp = document.getElementById('edp')
+            
+          if (!isNaN(edcount) && edcount > 0){
+            console.log(excount);
+            let eddiv = document.getElementById('eddiv')
+            for(let i = 0; i < edcount; i++){
+              let firstlabel = document.createElement("label");
+              firstlabel.setAttribute("class","text-center text-primary");
+              firstlabel.innerHTML = "Date of educational background"+i
+              eddiv.appendChild(firstlabel)
+              let firstinput = document.createElement("INPUT");
+              firstinput.setAttribute ('type','text');
+              firstinput.setAttribute ('name','educationdate_'+i);
+              firstinput.setAttribute ('placeholder','eg from 1975 till 3000');
+              firstinput.setAttribute("class",'mb-4 form-control text-center');
+              firstinput.setAttribute("id","educationdate"+i)
+              firstinput.required=true;
+              eddiv.appendChild(firstinput);
+              
+
+              let forthlabel = document.createElement("label");
+              forthlabel.setAttribute("class","text-center text-primary");
+              forthlabel.innerHTML = "State the education"+i
+              eddiv.appendChild(forthlabel)
+              
+                  
+              let forthinput = document.createElement("INPUT")
+              forthinput.setAttribute("type", "text");
+              forthinput.setAttribute("name","education_"+i);
+              forthinput.setAttribute("class","form-control mb-4 text-center");
+              forthinput.setAttribute("placeholder","Education"+i);
+              forthinput.setAttribute("id","education"+i)
+              forthinput.required=true;
+              eddiv.appendChild(forthinput);
+              
+  
+            }
+            edcheck.remove();
+          }
+          
+          else{
+            edp.innerHTML = "Enter the amount of educational background you have in number so we could help you collect it "
+            edp.style.color = 'blue'
+          
+            
+          }
+        })
+
+
+
+
+        const ccheck = document.getElementById('ccheck')
+         ccheck.addEventListener('click',function(){
+          const ccount = document.getElementById('ccount').value
+         
+          const cp = document.getElementById('cp')
+            
+          if (!isNaN(ccount) && ccount > 0){
+            console.log(ccount);
+            let cdiv = document.getElementById('cdiv')
+            for(let i = 0; i < ccount; i++){
+              let firstlabel = document.createElement("label");
+              firstlabel.setAttribute("class","text-center text-primary");
+              firstlabel.innerHTML = "Date of certification"+i
+              cdiv.appendChild(firstlabel)
+              let firstinput = document.createElement("INPUT");
+              firstinput.setAttribute ('type','text');
+              firstinput.setAttribute ('name','certificationdate_'+i);
+              firstinput.setAttribute ('placeholder','eg from 1975 till 3000');
+              firstinput.setAttribute("class",'mb-4 form-control text-center');
+              firstinput.setAttribute("id","certificationdate"+i)
+              firstinput.required=true;
+              cdiv.appendChild(firstinput);
+              
+
+              let forthlabel = document.createElement("label");
+              forthlabel.setAttribute("class","text-center text-primary");
+              forthlabel.innerHTML = "State the certifications"+i
+              cdiv.appendChild(forthlabel)
+              
+                  
+              let forthinput = document.createElement("INPUT")
+              forthinput.setAttribute("type", "text");
+              forthinput.setAttribute("name","certificate_"+i);
+              forthinput.setAttribute("class","form-control mb-4 text-center");
+              forthinput.setAttribute("placeholder","certificate "+i);
+              forthinput.setAttribute("id","certificate"+i)
+              forthinput.required=true;
+              cdiv.appendChild(forthinput);
+              
+  
+            }
+            ccheck.remove();
+          }
+          
+          else{
+            cp.innerHTML = "Enter the amount of certifications you have in number so we could help you collect it "
+            cp.style.color = 'blue'
+          
+            
+          }
+        })
+
+
+
+
+
+        const scheck = document.getElementById('scheck')
+         scheck.addEventListener('click',function(){
+          const scount = document.getElementById('scount').value
+         
+          const  sp = document.getElementById('sp')
+            
+          if (!isNaN(scount) && scount > 0){
+            console.log(scount);
+            let sdiv = document.getElementById('sdiv')
+            for(let i = 0; i < scount; i++){
+              
+
+              let forthlabel = document.createElement("label");
+              forthlabel.setAttribute("class","text-center text-primary");
+              forthlabel.innerHTML = "Skills"+i
+              sdiv.appendChild(forthlabel)
+              
+                  
+              let forthinput = document.createElement("INPUT")
+              forthinput.setAttribute("type", "text");
+              forthinput.setAttribute("name","skills_"+i);
+              forthinput.setAttribute("class","form-control mb-4 text-center");
+              forthinput.setAttribute("placeholder","skill "+i);
+              forthinput.setAttribute("id","skills"+i)
+              forthinput.required=true;
+              sdiv.appendChild(forthinput);
+              
+  
+            }
+            scheck.remove();
+          }
+          
+          else{
+            sp.innerHTML = "Enter the amount of skills you have in number so we could help you collect it "
+            sp.style.color = 'blue'
+          
+            
+          }
+        })
+  
+  
+  
+        myform.addEventListener('submit',function(){
+          fullname = document.getElementById('fullname').value;
+          Status = document.getElementById('Status').value;
+        description = document.getElementById('description').value;
+        job = document.getElementById('job').value;
+        address = document.getElementById('address').value;
+        review = document.getElementById('review').value;
+        user_link = document.getElementById('user_link').value;
+          if(!regexf.test(fullname) ){
+            fp = document.getElementById('fp');
+            fp.innerHTML = 'Please enter a valid name';
+            fp.style.color='red' ;
+            event.preventDefault();
+            alert("correctly fill all requirements");
+          }
+          
+            else if (!regs.test(description)){
+              dp = document.getElementById('dp');
+            dp.innerHTML = "Plese validate your input to match the requirement";
+            dp.style.color='red' ;
+            event.preventDefault();
+            alert("correctly fill all requirements");
+            }
+  
+            else if (!regexf.test(job)){
+              jp = document.getElementById('jp');
+            jp.innerHTML = "Plese validate your input to match the requirement";
+            jp.style.color='red' ;
+            event.preventDefault();
+            alert("correctly fill all requirements");
+            }
+            else if (!regexl.test(user_link)){
+              lp = document.getElementById('lp');
+              lp.innerHTML = "Plese validate your input to match the requirement";
+              lp.style.color='red' ;
+              event.preventDefault()
+              alert("correctly fill all requirements");
+              
+            }
+        })
+  
+    
+    }
+     
+      
+    </script>
+    <style>
+      body{
+        background-color:#13213c;
+        color:#c5c5ba;
+      }
+     </style>
+</body>
+</html>
+
+
+
+
+

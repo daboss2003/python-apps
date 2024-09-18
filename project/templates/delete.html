@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+</head>
+<body>
+    <p>Note that if you delete your account all your information with us will be lost and you will have to refill the confirmation form to get your profile back if you want to continue working with us. But you can still login you are only deleting the information collected from the confirmation page</p>
+    <h5>Are you sure you want to delete your account?</h5>
+    <form action="/delete" method="post" id="choiceform">
+        <button type="button" id="yes">Yes</button>
+        <button type="button" id="no">No</button>
+        <input type="hidden" name="selected_choice" id="selectedChoice" value="">
+    </form>
+    
+    <style>
+        body{
+            font-size: large;
+            background-color: rgb(65, 65, 88);
+            color: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 100px;
+        }
+
+        p{
+            text-align: center;
+            font-weight: bolder;
+
+        }
+
+        h5{
+            text-align: center;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+
+        }
+        form button{
+            margin: 20px;
+            width:100px;
+
+        }
+
+        button:hover{
+            cursor: pointer;
+            background-color: rgb(1, 133, 133);
+            color: whitesmoke;
+        }
+    </style>
+    <script>
+        const Yes = document.getElementById("yes")
+        console.log(Yes)
+        Yes.addEventListener('click',function(choice){
+            choice = Yes.innerHTML
+            document.getElementById("selectedChoice").value = choice;
+            document.getElementById("choiceform").submit();
+        })
+
+
+        const No = document.getElementById("no")
+        console.log(No)
+        No.addEventListener('click',function(choice){
+            choice = No.innerHTML
+            document.getElementById("selectedChoice").value = choice;
+            document.getElementById("choiceform").submit();
+        })
+           
+    </script>
+</body>
+</html>

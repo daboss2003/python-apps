@@ -1,0 +1,90 @@
+
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+  <div class="create_post_container position-relative mb-5">
+    <strong class="position-absolute">Create New Post</strong>
+    <img src="{% static 'network/car.jpg' %}" alt="img" class="img-container rounded-2" width="200">
+    <button type="button" onclick="create_post()" class="btn btn-primary "><em class="h3">+</em></button>
+    </div>
+    <div id="post_submit_div" style="display: none;" class="container-fluid ">
+        <form action="{% url 'create_user_post' %}" enctype="multipart/form-data" id="post_form" method="post" class="m-5">
+            {% csrf_token %}
+            <label for="post_content" class="form-label">ADD Text</label>
+            <textarea name="content" id="post_content" class="form-control"></textarea>
+            <label for="file_type" class="form-label">File To Submit</label>
+            <select name="media_type" id="file_type" class="form-control">
+                <option value="video">Video</option>
+                <option value="image">Image</option>
+            </select>
+            <input type="file" name="media" id="post_media" accept=".jpg, .png,.gif, .mp4" class="form-control">
+            <button type="reset" class="btn btn-primary">Reset</button>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+
+    <div class="container-fluid d-flex flex-column justify-content-center" id="display_all_post">
+        {% for post in page_obj %}
+        <div class="max" data-post="{{ post.id }}">
+        <div class="row row-cols-md-1 row-cols-lg-2" id="col">
+
+            <div class="col mt-5 mb-5">
+                <a href="{% url 'get_post' post_id=post.id  %}">
+                {% if post.media_type == "image" %}
+                <img src="{{ post.media.url }}" alt="picture" width="400" height="400" class="img-fluid rounded-4">
+                {% elif post.media_type == "video" %}
+                <video src="{{ post.media.url }}" controls  width="400" height="400" class="img-fluid rounded-4"></video>
+                {% endif %}
+               </a>
+            </div>
+
+            <div class="col mt-5">
+                <a href="{% url 'get_profile' user_id=post.user.id %}" class="nav-link">
+           <img src="{{ post.user.user_profile.profile_picture.url }}" alt="user image" class="img-fluid rounded-5" width="100" height="100">
+            <strong class="user_name">{{ post.user.username }}</strong>
+        </a>
+            <span>{{ post.timestamp | date:"Y-m-d H:i:s" }}</span>
+            <div class="mt-3 bg-light">{{ post.content }}</div>
+        </div>
+    </div>
+           <!-- Like and comment buttons -->
+           <div class="buttons_control mb-5 d-flex flex-row justify-content-evenly">
+            <button type="button" class=" like_buttons btn btn-light" data-post="{{ post.id }}" id="{{ post.id}}">{{ post.like_count }}<i class="bi bi-hand-thumbs-up-fill" ></i></button>
+            <button type="button" class="comment_buttons btn btn-light">
+                {{ post.comment_count }}<i class="bi bi-chat"></i>
+            </button>
+           </div>
+           <div class="comment_div m-5" style="display: none;">
+            {% for comment in post.post_comment.all %}
+            <div class="each_comment">
+                <a href="{% url 'get_profile' user_id=comment.user.id %}">
+                <img src="{{ comment.user.user_profile.profile_picture.url }}" alt="user image" class="img-fluid rounded-5" width="100" height="100"></a>
+                <strong>{{ comment.user.username }}</strong>:&nbsp;<strong> {{comment.content}}</strong>
+                <p><small>{{ comment.timestamp  |date:"Y-m-d H:i:s" }}</small></p>
+            </div>
+            {% endfor %}
+            <form action="{% url 'get_comment' post_id=post.id %}" method="post" class="mb-5 d-flex justify-content-around">
+                {% csrf_token %}
+                <input type="text" name="comment" id="add_comment" placeholder="Add a comment" class="form-control">
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+           </div>
+           
+       
+        {% endfor %}
+        <div class="paginator d-flex justify-content-center">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a href='?page=1' class="page-link">&laquo; first</a></li>
+                <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> Previous Posts</a></li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">Next Posts &raquo;</a></li>
+                <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link"> last &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+
+{% endblock %}

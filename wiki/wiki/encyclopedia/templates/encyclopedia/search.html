@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+{% load custom_filter %}
+
+{% block title %}
+   Search results
+{% endblock %}
+
+{% block body %}
+<ul>
+    {% if not entries  %}
+    <h3>No entry found with the title as {{ title }}</h3>
+    {% endif %}
+    {% for result in entries %}
+    {% with extention=result|split_extention %}
+    <li><a href="{{ extention.0 }}">{{extention.0}}</a></li>
+    {% endwith %}
+    {% endfor %}
+</ul>
+{% endblock %}

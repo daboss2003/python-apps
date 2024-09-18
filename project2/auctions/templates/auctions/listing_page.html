@@ -1,0 +1,160 @@
+{% extends "auctions/layout.html" %}
+{% block title %}
+  Create new Listing
+{% endblock %}
+
+
+{% block body %}
+{% if message %}
+<div class="alert alert-info">{{message}}</div>
+{% endif %}
+    
+
+{% if listings.closed == False %}
+<div class="container bg-tertiary">
+    <div class="row m-3 row-cols-md-1 row-cols-lg-2">
+        <div class="col">
+    <h2>{{ listings.title}}</h2>
+    <p>{{ listings.description}}</p>
+    <p> <strong>Category:</strong> {{ listings.category}}</p>
+    <p><strong>Current Price: </strong>{{ listings.current_bid }}</p>
+  
+    <p><strong>Starting Bid:</strong>{{ listings.starting_bid }}</p>
+    <p> <strong>Created By: </strong> {{ listings.seller }}</p>
+    <p> <strong>Ends At: </strong>{{ listings.end_time }}</p>
+</div>
+    {% if image %}
+    <div class="img-fluid col">
+    <img src="{{ image }}" alt="Listing Image" width="500" height="300"> 
+</div>
+    {% endif %}
+</div>
+</div>
+<div class="m-5">
+    <form action="{% url 'listing_page' listing_id=listings.id %}" method="post" class="">
+        {% csrf_token %}
+        <input type="text" placeholder="{{ listings.current_bid}}" name="bid_amount" id="bid" class="form-control text-center">
+        <div class="d-flex justify-content-center mt-2">
+        <input type="submit" value="Bid Now!" class="btn btn-primary">
+    </div>
+    </form>
+</div>
+    <div class="container">
+        <div class="row row-cols-md-1 row-cols-lg-2">
+        {% for comment in listings.listing_comment.all %}
+            <div class="col card ms-5 mb-5" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">{{ comment.user }}</h5>
+            <p class="card-text">{{ comment.text }}</p>
+            <p card-link>{{ comment.timestamp }}</p>
+        </div>
+        </div>
+        {% empty %}
+        No comment Yet
+        {% endfor %}
+    </div>
+    </div>
+
+    <div class="m-5">
+        <form action="{% url 'comment' listing_id=listings.id %}" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Comment" name="comment" id="comment" class="form-control text-center">
+            <div class="d-flex justify-content-center mt-2">
+            <input type="submit" value="Comment" class="btn btn-primary">
+        </div>
+        </form>
+    </div>
+
+    <div class="absolute1 ">
+        <form action="{% url 'add_to_wishlist'  listing_id=listings.id %}" method="post" id="choiceform">
+            {% csrf_token %}
+            {% if items %}
+            {% for item in items %}
+            {% if item.id == listings.id %}
+            <button type="button" id="no" class="btn btn-primary">Remove</button>
+            <input type="hidden" name="wish" id="selectedChoice" value="">
+            {% else %}
+            <button type="button" id="yes" class="btn btn-primary">Add</button>
+            <input type="hidden" name="wish" id="selectedChoice" value="">
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <button type="button" id="maybe" class="btn btn-primary">Add</button>
+            <input type="hidden" name="wish" id="selectedChoice" value="">
+            {% endif %}
+            
+        </form>
+    </div>
+
+    <div class="absolute2">
+        <form action="{% url 'close_listing' listing_id=listings.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Close Listing" class="btn btn-primary">
+        </form>
+    </div>
+
+
+
+<style>
+    .absolute1{
+        position:absolute;
+        top: 0;
+        left: 80%;
+        margin-top: 10%;
+        margin-left: 10%;
+    }
+    .absolute2{
+        position:absolute;
+        top: 0;
+        margin-top: 10%;
+    }
+</style>
+
+
+    <script>
+        const Yes = document.getElementById("yes")
+        if(Yes != null){
+            console.log(Yes)
+            Yes.addEventListener('click',function(choice){
+                choice = Yes.innerHTML
+                document.getElementById("selectedChoice").value = choice;
+                document.getElementById("choiceform").submit();
+    
+            })
+    
+        }
+       
+
+        const No = document.getElementById("no")
+        if(No != null){
+            console.log(No)
+            No.addEventListener('click',function(choice){
+            choice = No.innerHTML
+            document.getElementById("selectedChoice").value = choice;
+            document.getElementById("choiceform").submit();
+        })
+        }
+        
+
+
+        const Maybe = document.getElementById("maybe")
+        if (Maybe != null){
+            console.log(Maybe)
+            Maybe.addEventListener('click',function(choice){
+            choice = Maybe.innerHTML
+            document.getElementById("selectedChoice").value = choice;
+            document.getElementById("choiceform").submit();
+        })
+           
+        }
+        
+    </script>
+
+
+    {% else %}
+    {% if user == listings.winner %}
+    <h1>Congratulations, you have won the auction!</h1>
+    {% endif %}
+    <h1>This Listing is no Longer active</h1>
+    {% endif %}
+{% endblock %}

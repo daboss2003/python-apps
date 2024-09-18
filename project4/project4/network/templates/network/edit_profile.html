@@ -1,0 +1,16 @@
+{% extends "network/layout.html" %}
+
+
+{% block body %}
+    <div id="profile_submit_div" class="m-5 d-flex justify-content-center align-center" >
+        <form method="POST" action="{% url 'get_profile' user_id=user.id %}" enctype="multipart/form-data" id="profile_form">
+            {% csrf_token %}
+            <textarea name="user_bio" id="user_bio" class="form-control"></textarea>
+            <input type="file" name="user_pics" id="user_pics" class="form-control">
+            <button type="reset" class="btn btn-primary">Reset</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+{% endblock %}

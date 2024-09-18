@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Lookup</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav class="nav"> 
+        <h1>TECH-BOSS.CO</h1>
+    </nav>
+
+    <h3>Search For Any Professional You Might Be Looking For.</h3>
+    <div class="input">
+        <span><i class="bi bi-search"></i></span>
+    <input type="search" id="searchInput" oninput="searchProfessionals()" placeholder="Search" >
+    </div>
+    <div class="answer">
+    <ul id="searchResults"> </ul>
+    </div>
+
+   
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const searchResults = document.getElementById("searchResults");
+        function searchProfessionals() {
+            const searchTerm = searchInput.value.trim();
+            if(searchTerm === ""){
+                searchResults.innerHTML = " ";
+                return
+            }
+            else{
+                fetch(`/search?query=${searchTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data == ""){
+                        searchResults.innerHTML = "<li>No Results Found! Try Again Later...</li>";
+                    }
+                    else{
+                        displayResults(data)
+                    }
+                })
+                .catch(error => console.error('Error fetching search results:',error));
+            }
+            function displayResults(results){
+                searchResults.innerHTML = "";
+                results.forEach(result =>{
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${result.fullname} - ${result.job}: ${result.description}`;
+                    const trigger = document.createElement('button')
+                    trigger.textContent = "View Profile"
+
+                    searchResults.appendChild(listItem);
+                    searchResults.appendChild(trigger)
+                    trigger.addEventListener('click',()=>{
+                        window.location.href = `/view_profile/${result.user_id}`
+                    });
+                })
+            }
+
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color:#13213c;
+            color:#c5c5ba;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .nav{
+            background-color: black;
+            margin-bottom: 30px;
+            width: 100%;
+            height: 8%;
+            font-size: larger;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h3{
+            text-align: center;
+        }
+        .input{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15%;
+            
+            
+
+        }
+
+        input{
+            width: 50%;
+            height:50px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: larger;
+            outline-style: groove;
+            outline-color: blue;
+
+        }
+
+        input:hover{
+            background-color: rgb(158, 158, 247);
+        }
+
+        span{
+            font-size: larger;
+            position: absolute;
+            color: black;
+            margin-right: -45%;
+        }
+
+
+
+        .answer{
+           
+            border-radius: 20px;
+            background-color: #8ac7f8;
+            color:black;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-self: center;
+            text-align: center;
+
+        }
+
+        .answer ul{
+            list-style-type: none;
+            text-align: center;
+            width: 50%;
+            font-size: large;
+            
+           
+
+
+
+        }
+
+        ul li{
+            
+            margin-top: 10%;
+            border-bottom: 2px solid black;
+        }
+
+        ul button{
+            width: 40%;
+            background-color: blue;
+            color: whitesmoke;
+
+        }
+
+
+        
+    </style>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="container-fluid m-5">
+    <h3>All Follow Request</h3>
+    {% for friend in friend_requests %}
+
+    <div class="container-fluid m-3 row col-6">
+        <div class="col">
+        <a href="{% url 'get_profile' user_id=friend.user.id %}">
+        <img src="{{ friend.user.user_profile.profile_picture.url }}" alt="user image" class="img-fluid rounder-5" width="100" height="100">
+    </div></a>
+    <div class="col">
+     <p class="h3">{{ friend.user.username }}</p> 
+        <form action="{% url 'send_friend_request' friend_id=friend.user.id %}" method="post">
+            {% csrf_token %}
+           <input type="submit" value="Follow Back" name="accept" class="btn btn-primary">
+           <input type="submit" value="Delete" name="delete" class="btn btn-primary">
+        </form>  
+    </div>
+    </div>
+    {% empty %}
+    <h6>You Have no Follow Request</h6>
+    {% endfor %}
+</div>
+
+<div class="container-fluid m-5">
+    <h4 >People You May Know</h4>
+    {% for users in people  %}
+    <div class="container-fluid m-3 row col-6">
+        <div class="col">
+        <a href="{% url 'get_profile' user_id=users.user.id %}">
+        <img src="{{ users.profile_picture.url }}" alt="user image" class="img-fluid rounder-5" width="100" height="100"></div></a>
+        <div class="col">
+        <p class="user_name">{{ users.user.username }}</p> 
+        <button type="button" class="btn btn-primary follow" data-id="{{ users.user.id }}">Follow</button>   
+    </div>
+    </div>
+    {% empty %}
+    <h5>You already Follow all Users in the data base</h5>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+  Create new Listing
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class=" text-center h3 ">Create a New Listing</h1>
+    <form method="post" action="{% url 'new_listing' %}" class="d-flex justify-center flex-column m-5">
+        {% csrf_token %}
+        <label for="title" class="form-label text-center">Listing Title</label>
+        <input type="text" name="listing_title" id="title" class="form-control" required>
+        <label for="description" class="form-label text-center">Description of the Item</label>
+        <textarea name="listing_description" id="description" placeholder="describe the item" class="form-control mb-3" required ></textarea>
+        <label for="starting_bid" class="form-label text-center">What should the starting bid be?</label>
+        <input type="text" name="starting_bid" id="starting_bid" required class="form-control mb-3">
+        <label for="end_time" class="form-label text-center">Time to end The Bidding</label>
+        <input type="datetime-local" name="end_time" id="end_time" class="form-control mb-3">
+        <label for="reserve_price" class="form-label text-center">What should the reserved Price be?</label>
+        <input type="text" name="reserve_price" id="reserve_price" required class="form-control mb-3">
+        <label for="image" class="form-label text-center">Paste the URL for the stock image</label>
+        <input type="url" name="listing_image" id="image" class="form-control mb-3">
+        <label for="category" class="form-label text-center">Select the Category Your Goods fall in</label>
+        <select name="listing_category" id="category" required class="form-control mb-3">
+            <option value="Electronics">Electronics</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Books">Books</option>
+            <option value="Home and Garden">Home and Garden</option>
+            <option value="Sports and Fitness">Sports and Fitness</option>
+            <option value="Miscellaneous">Miscellaneous</option>
+            <option value="Toys">Toys</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Vehicles">Vehicles</option>
+            <option value="Fashion">Fashion</option>
+        </select>
+        <div class="d-flex justify-content-around m-5">
+        <button type="reset" class="btn btn-primary">Reset</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+</div>
+{% endblock %}

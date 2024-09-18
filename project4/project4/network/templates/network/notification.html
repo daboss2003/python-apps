@@ -1,0 +1,23 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="container-fluid m5">
+{% for note in notification %}
+<div class="container-fluid mb-3 text-primary text-center" onclick="view_note('{{ note.id }}')" >
+    {% if note.type == "post" %}
+    <a href="{% url 'get_post' post_id=note.post.id %}" class="nav-link">
+        {{ note.content }}
+        <small> {{ note.timestamp |date:"Y-m-d H:i:s" }}</small>
+    </a>
+    {% else %}
+    <a href="{% url 'get_all_user'%}" class="nav-link">
+        {{ note.content }}
+        <small> {{ note.timestamp |date:"Y-m-d H:i:s" }}</small>
+    </a>
+    {% endif %}
+</div>
+{% empty %}
+<h6 class="text-center h4">You have No Notification</h6>
+{% endfor %}
+</div>
+{% endblock %}
